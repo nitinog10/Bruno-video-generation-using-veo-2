@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruno - AI Video Generator</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/genai": "https://esm.sh/@google/genai@^1.4.0"
+        }
+      }
+    </script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <main class="container">
+        <div class="left-panel">
+            <header>
+                <h1>Bruno</h1>
+                <p>A video generation model</p>
+            </header>
+    
+            <div class="card">
+                <div class="input-section">
+                    <label for="prompt-input" class="input-label">Prompt</label>
+                    <textarea id="prompt-input" type="text" placeholder="e.g., A cinematic shot of a koala surfing on a wave at sunset"></textarea>
+                    
+                    <div class="file-upload-wrapper">
+                        <label for="file-input" class="file-upload-label">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"></path></svg>
+                            <span>Upload Image (Optional)</span>
+                        </label>
+                        <input id="file-input" type="file" accept="image/*" />
+                        <span id="file-name">No file chosen</span>
+                    </div>
+    
+                    <div id="image-preview-container" class="image-preview-container">
+                        <img alt="Conditioning image preview" id="image-preview" />
+                    </div>
+                </div>
+                
+                <button id="generate-button">Generate Video</button>
+    
+                <div id="quota-error" class="error-box">
+                  <p>You have exceeded your daily quota for free video generations.</p>
+                  <p>To continue, please provide your own API key.</p>
+                  <button id="open-key">Add API Key</button>
+                </div>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="output-section">
+                <div id="loader" class="loader"></div>
+                <p id="status">Ready.</p>
+                <video id="video" autoplay loop controls></video>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="index.js"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
